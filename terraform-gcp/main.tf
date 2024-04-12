@@ -167,6 +167,36 @@ output "service_ip" {
   value = module.lb-http.external_ip
 }
 
+resource "google_storage_bucket" "raw-bucket" {
+  name          = "${var.project_id}-raw-bucket"
+  location      = "US"
+  force_destroy = true
+
+  lifecycle_rule {
+    condition {
+      age = 1
+    }
+    action {
+      type = "AbortIncompleteMultipartUpload"
+    }
+  }
+}
+
+resource "google_storage_bucket" "staging-bucket" {
+  name          = "${var.project_id}-staging-bucket"
+  location      = "US"
+  force_destroy = true
+  
+  lifecycle_rule {
+    condition {
+      age = 1
+    }
+    action {
+      type = "AbortIncompleteMultipartUpload"
+    }
+  }
+}
+
 # ----------------------------------------------------------------------------------------
 # Create the Cloud Run DBT Docs service and corresponding resources, uncomment if needed
 
