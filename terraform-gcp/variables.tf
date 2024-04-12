@@ -1,7 +1,7 @@
 variable "app_name" {
   type        = string
   description = "Application Name"
-  default     = "mage-data-prep"
+  default     = "eqasmnt"
 }
 
 variable "container_cpu" {
@@ -17,7 +17,7 @@ variable "container_memory" {
 variable "project_id" {
   type        = string
   description = "The name of the project"
-  default     = "unique-gcp-project-id"
+  default     = "de-eq-asmnt-2024"
 }
 
 variable "region" {
