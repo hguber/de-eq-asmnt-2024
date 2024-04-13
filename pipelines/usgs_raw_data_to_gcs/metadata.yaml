@@ -1,0 +1,73 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - clean_raw_data
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: usgs_data_search
+  retry_config: null
+  status: updated
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: usgs_data_search
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: clean_raw_data
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - usgs_data_search
+  uuid: clean_raw_data
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-04-13 17:32:43.123198+00:00'
+data_integration: null
+description: ingest + clean raw usgs data to gcs bucket
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: usgs_raw_data_to_gcs
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+uuid: usgs_raw_data_to_gcs
+variables:
+  HEADER:
+  - event_id
+  - datetime
+  - location
+  - latitude
+  - longitude
+  - depth
+  - magnitude
+  - significance
+  - alert
+  - url
+  - eventtype
+  - country
+  MAG_END: 10
+  MAG_START: 3
+variables_dir: /home/src/mage_data/default_repo
+widgets: []
