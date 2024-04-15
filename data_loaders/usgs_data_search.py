@@ -60,7 +60,6 @@ def load_data_from_api(*args, **kwargs):
         print('successfully appended ' + country + ': ' + str(len(event_list)))            
                         
     df = pd.DataFrame(event_list,columns=headers)
-    df.to_csv('/home/src/default_repo/data/eq_events.csv', encoding='utf-8')
     return df
 
 

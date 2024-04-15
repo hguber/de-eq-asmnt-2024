@@ -10,12 +10,12 @@ blocks:
   language: python
   name: usgs_data_search
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
   uuid: usgs_data_search
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: null
   configuration:
     file_source:
@@ -34,7 +34,7 @@ blocks:
   upstream_blocks:
   - usgs_data_search
   uuid: clean_raw_data
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: null
   configuration: {}
   downstream_blocks: []
