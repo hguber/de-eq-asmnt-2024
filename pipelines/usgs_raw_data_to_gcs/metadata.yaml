@@ -17,8 +17,11 @@ blocks:
   uuid: usgs_data_search
 - all_upstream_blocks_executed: false
   color: null
-  configuration: {}
-  downstream_blocks: []
+  configuration:
+    file_source:
+      path: transformers/clean_raw_data.py
+  downstream_blocks:
+  - usgs_raw_data_to_gcs
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -31,6 +34,22 @@ blocks:
   upstream_blocks:
   - usgs_data_search
   uuid: clean_raw_data
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: usgs_raw_data_to_gcs
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - clean_raw_data
+  uuid: usgs_raw_data_to_gcs
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
