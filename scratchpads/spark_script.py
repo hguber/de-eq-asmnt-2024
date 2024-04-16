@@ -10,8 +10,7 @@ spark = SparkSession.builder \
 
 df = spark.read.csv("gs://de-eq-asmnt-2024-raw-bucket/*/*")
 
-df.registerTempTable('eq_events')
-
+print(df.columns)
 
 
 
