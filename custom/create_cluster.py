@@ -1,5 +1,6 @@
 from google.cloud import dataproc_v1 as dataproc
 from google.cloud import storage
+import re
 
 if 'custom' not in globals():
     from mage_ai.data_preparation.decorators import custom
@@ -18,6 +19,7 @@ def spark_processing(*args, **kwargs):
     #object_key = kwargs['name']
 
     # Create the cluster client.
+    print('hello')
     c_o = {"api_endpoint" : kwargs['region'] +"-dataproc.googleapis.com:443"}
     cluster_client = dataproc.ClusterControllerClient(
         client_options={"api_endpoint" : kwargs['region'] +"-dataproc.googleapis.com:443"}
@@ -31,12 +33,13 @@ def spark_processing(*args, **kwargs):
             "worker_config": {"num_instances": 2, "machine_type_uri": "n1-standard-2"},
         },
     }
-
+    print('reached here')
     # Create the cluster.
     operation = cluster_client.create_cluster(
         request={"project_id": kwargs['project_id'], "region": kwargs['region'], "cluster": cluster}
     )
     result = operation.result()
+    print(result)
 
     print("Cluster created successfully: ", result.cluster_name)
 
@@ -47,7 +50,7 @@ def spark_processing(*args, **kwargs):
     # Create the job config.
     job = {
         "placement": {"cluster_name": kwargs['cluster_name']},
-        "pyspark_job": {"main_python_file_uri": job_file_path},
+        "pyspark_job": {"main_python_file_uri": 'gs://eq_spark_scripts/spark_script.py'},
     }
 
     operation = job_client.submit_job_as_operation(
@@ -78,6 +81,6 @@ def spark_processing(*args, **kwargs):
     )
     operation.result()
 
-    print("Cluster " + cluster_name + " successfully deleted.")
+    print("Cluster " +kwargs['cluster_name'] + " successfully deleted.")
 
 
