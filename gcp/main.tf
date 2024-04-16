@@ -60,6 +60,12 @@ resource "google_project_service" "sqladmin" {
   disable_on_destroy = false
 }
 
+# Enable Cloud Dataproc Admin API
+resource "google_project_service" "dataproc" {
+  service            = "dataproc.googleapis.com"
+  disable_on_destroy = false
+}
+
 
 # Create the Cloud Run service
 resource "google_cloud_run_service" "run_service" {

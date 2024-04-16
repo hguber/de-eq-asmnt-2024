@@ -1,0 +1,12 @@
+triggers:
+- envs: []
+  last_enabled_at: 2024-04-15 21:49:55.714166+00:00
+  name: spark_pl_trigger
+  pipeline_uuid: gcs_to_bigquery_spark
+  schedule_interval: null
+  schedule_type: api
+  settings: null
+  sla: null
+  start_time: 2024-04-15 21:13:00+00:00
+  status: inactive
+  variables: {}
