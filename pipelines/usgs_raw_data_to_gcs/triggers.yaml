@@ -1,0 +1,12 @@
+triggers:
+- envs: []
+  last_enabled_at: 2024-04-15 21:09:18.292091+00:00
+  name: monthly_usgs_search
+  pipeline_uuid: usgs_raw_data_to_gcs
+  schedule_interval: '@monthly'
+  schedule_type: time
+  settings: {}
+  sla: null
+  start_time: 2024-05-01
+  status: active
+  variables: {}
