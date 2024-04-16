@@ -40,6 +40,35 @@ def spark_processing(*args, **kwargs):
 
     print("Cluster created successfully: ", result.cluster_name)
 
+    job_client = dataproc.JobControllerClient(
+        client_options={"api_endpoint" : kwargs['region'] +"-dataproc.googleapis.com:443"}
+    )
+
+    # Create the job config.
+    job = {
+        "placement": {"cluster_name": kwargs['cluster_name']},
+        "pyspark_job": {"main_python_file_uri": job_file_path},
+    }
+
+    operation = job_client.submit_job_as_operation(
+        request={"project_id": kwargs['project_id'], "region": kwargs['region'], "job": job}
+    )
+    response = operation.result()
+
+    # Dataproc job output gets saved to the Google Cloud Storage bucket
+    # allocated to the job. Use a regex to obtain the bucket and blob info.
+    matches = re.match("gs://(.*?)/(.*)", response.driver_output_resource_uri)
+
+    output = (
+        storage.Client()
+        .get_bucket(matches.group(1))
+        .blob(f"{matches.group(2)}.000000000")
+        .download_as_bytes()
+        .decode("utf-8")
+    )
+
+    print(f"Job finished successfully: {output}")
+
     operation = cluster_client.delete_cluster(
         request={
             "project_id": kwargs['project_id'],
