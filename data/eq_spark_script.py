@@ -3,12 +3,13 @@ from pyspark.sql import SparkSession
 from pyspark.conf import SparkConf
 from pyspark.context import SparkContext
 from pyspark.sql.functions import date_format
-
+gs_bucket_raw = 'gs://de-eq-asmnt-2024-raw-bucket'
+gs_bucket_stage = 'gs://de-eq-asmnt-2024-staging-bucket'
 spark = SparkSession.builder \
     .config(conf=sc.getConf()) \
     .getOrCreate()
 
-df = spark.read.csv('eq_events/raw/*/*', header='true')
+df = spark.read.csv(gs_bucket_raw + '/eq_events/raw/*/*', header='true')
 df = df.withColumn("year", date_format(df.date, "yyyy")).withColumn("month", date_format(df.date, "MM"))
 df = df.drop('_c0')
 
@@ -77,9 +78,8 @@ group by 1,2
 cluster by country
 """)
 
-df.coalesce(1).write.option("header", "true").parquet('eq_events/final/', mode='overwrite')
-df.coalesce(1).write.option("header", "true").partitionBy('year', 'month').parquet('eq_events/processed/final', mode='overwrite')
-df_week.coalesce(1).write.option("header", "true").partitionBy('eq_week').parquet('eq_events/processed/weekly/', mode='overwrite')
-df_monthly.coalesce(1).write.option("header", "true").partitionBy('eq_month').parquet('eq_events/processed/monthly/', mode='overwrite')
-df_daily.coalesce(1).write.option("header", "true").partitionBy('year', 'month').parquet('eq_events/processed/daily/', mode='overwrite')
+df.coalesce(1).write.option("header", "true").partitionBy('year', 'month').parquet(gs_bucket + '/eq_events/processed/final', mode='overwrite')
+df_week.coalesce(1).write.option("header", "true").partitionBy('eq_week').parquet(gs_bucket + '/eq_events/processed/weekly/', mode='overwrite')
+df_monthly.coalesce(1).write.option("header", "true").partitionBy('eq_month').parquet(gs_bucket + '/eq_events/processed/monthly/', mode='overwrite')
+df_daily.coalesce(1).write.option("header", "true").parquet(gs_bucket + '/eq_events/processed/daily/', mode='overwrite')
 

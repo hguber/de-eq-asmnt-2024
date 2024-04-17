@@ -50,7 +50,9 @@ def spark_processing(*args, **kwargs):
     # Create the job config.
     job = {
         "placement": {"cluster_name": kwargs['cluster_name']},
-        "pyspark_job": {"main_python_file_uri": 'gs://eq_spark_scripts/spark_script.py'},
+        "pyspark_job": {"main_python_file_uri": 'gs://eq_spark_scripts/spark_script.py',
+                        "jar_file_uris" : ['eq_event_jars/lib/gcs-connector-hadoop3-2.2.5.jar', 
+                                           'eq_event_jars/lib/spark-bigquery-with-dependencies_2.12-0.23.2.jar']},
     }
 
     operation = job_client.submit_job_as_operation(
