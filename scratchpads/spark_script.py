@@ -9,6 +9,11 @@ spark = SparkSession.builder \
     .getOrCreate()
 
 df = spark.read.csv("gs://de-eq-asmnt-2024-raw-bucket/*/*")
+df = 
+
+spark.sql("""
+
+          """)
 
 print(df.columns)
 
