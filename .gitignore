@@ -13,3 +13,4 @@ mage-ai.db
 mage_data/
 secrets/
 google_credentials/
+data/eq_events
