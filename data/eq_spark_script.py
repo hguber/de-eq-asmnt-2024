@@ -9,7 +9,7 @@ spark = SparkSession.builder \
     .appName('test') \
     .getOrCreate()
 spark.conf.set('temporaryGcsBucket', 'dataproc-temp-us-west1-327100069665-iimd1yiq')
-df = spark.read.csv(gs_bucket_raw + '/eq_events/raw/*/*', header='true')
+df = spark.read.csv(gs_bucket_raw + '/raw/*/*', header='true')
 df = df.withColumn("year", date_format(df.date, "yyyy")).withColumn("month", date_format(df.date, "MM"))
 df = df.drop('_c0')
 
@@ -78,13 +78,13 @@ group by 1,2
 cluster by country
 """)
 
-df.coalesce(1).write.option("header", "true").partitionBy('year', 'month').parquet(gs_bucket_stage + '/eq_events/processed/final', mode='overwrite')
+df.coalesce(1).write.option("header", "true").partitionBy('year', 'month').parquet(gs_bucket_stage + '/processed/final', mode='overwrite')
 print(f'entire df dataset successfully saved to {gs_bucket_stage}')
-df_week.coalesce(1).write.option("header", "true").partitionBy('eq_week').parquet(gs_bucket_stage + '/eq_events/processed/weekly/', mode='overwrite')
+df_week.coalesce(1).write.option("header", "true").partitionBy('eq_week').parquet(gs_bucket_stage + '/processed/weekly/', mode='overwrite')
 print(f'weekly df dataset successfully saved to {gs_bucket_stage}')
-df_monthly.coalesce(1).write.option("header", "true").partitionBy('eq_month').parquet(gs_bucket_stage + '/eq_events/processed/monthly/', mode='overwrite')
+df_monthly.coalesce(1).write.option("header", "true").partitionBy('eq_month').parquet(gs_bucket_stage + '/processed/monthly/', mode='overwrite')
 print(f'monthly df dataset successfully saved to {gs_bucket_stage}')
-df_daily.coalesce(1).write.option("header", "true").parquet(gs_bucket_stage + '/eq_events/processed/daily/', mode='overwrite')
+df_daily.coalesce(1).write.option("header", "true").parquet(gs_bucket_stage + '/processed/daily/', mode='overwrite')
 print(f'daily df dataset successfully saved to {gs_bucket_stage}')
 
 df.write.format('bigquery').option('table', 'eq_events.eq_dataset').option("header", "true").save()
