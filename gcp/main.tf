@@ -203,6 +203,13 @@ resource "google_storage_bucket" "staging-bucket" {
   }
 }
 
+resource "google_bigquery_dataset" "dataset" {
+  dataset_id                  = "eq_events"
+  friendly_name               = "usgs eq data"
+  description                 = "eq dataset based on usgs data"
+  location                    = "US"
+  default_table_expiration_ms = 3600000
+}
 # ----------------------------------------------------------------------------------------
 # Create the Cloud Run DBT Docs service and corresponding resources, uncomment if needed
 

@@ -6,9 +6,9 @@ from pyspark.sql.functions import date_format
 gs_bucket_raw = 'gs://de-eq-asmnt-2024-raw-bucket'
 gs_bucket_stage = 'gs://de-eq-asmnt-2024-staging-bucket'
 spark = SparkSession.builder \
-    .config(conf=sc.getConf()) \
+    .appName('test') \
     .getOrCreate()
-
+spark.conf.set('temporaryGcsBucket', 'dataproc-temp-us-west1-327100069665-iimd1yiq')
 df = spark.read.csv(gs_bucket_raw + '/eq_events/raw/*/*', header='true')
 df = df.withColumn("year", date_format(df.date, "yyyy")).withColumn("month", date_format(df.date, "MM"))
 df = df.drop('_c0')
@@ -78,8 +78,20 @@ group by 1,2
 cluster by country
 """)
 
-df.coalesce(1).write.option("header", "true").partitionBy('year', 'month').parquet(gs_bucket + '/eq_events/processed/final', mode='overwrite')
-df_week.coalesce(1).write.option("header", "true").partitionBy('eq_week').parquet(gs_bucket + '/eq_events/processed/weekly/', mode='overwrite')
-df_monthly.coalesce(1).write.option("header", "true").partitionBy('eq_month').parquet(gs_bucket + '/eq_events/processed/monthly/', mode='overwrite')
-df_daily.coalesce(1).write.option("header", "true").parquet(gs_bucket + '/eq_events/processed/daily/', mode='overwrite')
+df.coalesce(1).write.option("header", "true").partitionBy('year', 'month').parquet(gs_bucket_stage + '/eq_events/processed/final', mode='overwrite')
+print(f'entire df dataset successfully saved to {gs_bucket_stage}')
+df_week.coalesce(1).write.option("header", "true").partitionBy('eq_week').parquet(gs_bucket_stage + '/eq_events/processed/weekly/', mode='overwrite')
+print(f'weekly df dataset successfully saved to {gs_bucket_stage}')
+df_monthly.coalesce(1).write.option("header", "true").partitionBy('eq_month').parquet(gs_bucket_stage + '/eq_events/processed/monthly/', mode='overwrite')
+print(f'monthly df dataset successfully saved to {gs_bucket_stage}')
+df_daily.coalesce(1).write.option("header", "true").parquet(gs_bucket_stage + '/eq_events/processed/daily/', mode='overwrite')
+print(f'daily df dataset successfully saved to {gs_bucket_stage}')
 
+df.write.format('bigquery').option('table', 'eq_events.eq_dataset').option("header", "true").save()
+print(f'entire df dataset successfully loaded to eq_events.eq_dataset')
+df_week.write.format('bigquery').option('table', 'eq_events.eq_weekly').option("header", "true").save()
+print(f'weekly df dataset successfully loaded to eq_events.eq_weekly')
+df_monthly.write.format('bigquery').option('table', 'eq_events.eq_monthly').option("header", "true").save()
+print(f'monthly df dataset successfully loaded to eq_events.eq_monthly')
+df_daily.write.format('bigquery').option('table', 'eq_events.eq_daily').option("header", "true").save()
+print(f'daily df dataset successfully loaded to eq_events.eq_daily')
