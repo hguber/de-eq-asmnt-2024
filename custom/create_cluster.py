@@ -19,7 +19,6 @@ def spark_processing(*args, **kwargs):
     #object_key = kwargs['name']
 
     # Create the cluster client.
-    print('hello')
     c_o = {"api_endpoint" : kwargs['region'] +"-dataproc.googleapis.com:443"}
     cluster_client = dataproc.ClusterControllerClient(
         client_options={"api_endpoint" : kwargs['region'] +"-dataproc.googleapis.com:443"}
@@ -33,13 +32,11 @@ def spark_processing(*args, **kwargs):
             "worker_config": {"num_instances": 2, "machine_type_uri": "n1-standard-2"},
         },
     }
-    print('reached here')
     # Create the cluster.
     operation = cluster_client.create_cluster(
         request={"project_id": kwargs['project_id'], "region": kwargs['region'], "cluster": cluster}
     )
     result = operation.result()
-    print(result)
 
     print("Cluster created successfully: ", result.cluster_name)
 
