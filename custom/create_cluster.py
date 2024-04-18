@@ -51,25 +51,27 @@ def spark_processing(*args, **kwargs):
                         "jar_file_uris" : ['gs://eq_event_jars/lib/gcs-connector-hadoop3-2.2.5.jar', 
                                            'gs://eq_event_jars/lib/spark-bigquery-with-dependencies_2.12-0.23.2.jar']},
     }
-
+    print('reached here')
     operation = job_client.submit_job_as_operation(
-        request={"project_id": kwargs['project_id'], "region": kwargs['region'], "job": job}
+        request={"project_id": kwargs['project_id'], "region": kwargs['region'], "job": job},
+        timeout = 3600
     )
-    response = operation.result()
+    #response = operation.result()
 
     # Dataproc job output gets saved to the Google Cloud Storage bucket
     # allocated to the job. Use a regex to obtain the bucket and blob info.
-    matches = re.match("gs://(.*?)/(.*)", response.driver_output_resource_uri)
+    #matches = re.match("gs://(.*?)/(.*)", response.driver_output_resource_uri)
 
-    output = (
-        storage.Client()
-        .get_bucket(matches.group(1))
-        .blob(f"{matches.group(2)}.000000000")
-        .download_as_bytes()
-        .decode("utf-8")
-    )
+    #output = (
+    #    storage.Client()
+    #    .get_bucket(matches.group(1))
+    #    .blob(f"{matches.group(2)}.000000000")
+    #    .download_as_bytes()
+    #    .decode("utf-8")
+    #)
 
-    print(f"Job finished successfully: {output}")
+    #print(f"Job finished successfully: {output}")
+    print("Job finished successfully")
 
     operation = cluster_client.delete_cluster(
         request={
