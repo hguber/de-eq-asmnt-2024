@@ -22,8 +22,8 @@ def export_data_to_google_cloud_storage(df: DataFrame, **kwargs) -> None:
     year = str(df['datetime'].iloc[0])[0:4]
     month = str(df['datetime'].iloc[0])[5:7]
     bucket_name = 'de-eq-asmnt-2024-raw-bucket'
-    object_key = 'eq_events/eq_events_' + year + '/' + 'eq_events_' + year + '_' + month + '.csv'
-    #'de-eq-asmnt-2024-raw-bucket/eq_events/eq_events_2024'
+    object_key = 'raw/eq_events_' + year + '/' + 'eq_events_' + year + '_' + month + '.csv'
+    #'de-eq-asmnt-2024-raw-bucket/raw/eq_events_2024'
     GoogleCloudStorage.with_config(ConfigFileLoader(config_path, config_profile)).export(
         df,
         bucket_name,
