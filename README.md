@@ -23,7 +23,7 @@ The diagram below illustrates the complete workflow, beginning with the ingestio
 - **Metadata Storage:** Cloud Filestore
 - **Compute services:** Cloud Run 
 
-![](images/20240424142712.png)
+![Pipeline Diagram](images/pipeline_diagram.png)
 ## Dataset
 
 The dataset was taken from ANSS ComCat server using functions taken from USGS libcomcat. 
@@ -80,8 +80,8 @@ The dataset was taken from ANSS ComCat server using functions taken from USGS li
 
 This dashboard presents statistics pertaining to the magnitude, depth, significance, and frequency of earthquakes, focusing primarily on terrestrial occurrences. The dataset spans from January 1989 to March 2024, with the flexibility to adjust the time period within this range. The second page explores the interrelationships among these features and includes a heatmap for visualizing earthquake occurrences.
 
-![](images/20240424021600.png?raw=true)
-![](images/20240424021629.png?raw=true)
+![Dashboard Page 1](images/dashboard_page_one.png)
+![Dashboard Page 2](images/dashboard_page_two.png)
 
 To interact with the dashboard, click on the link:
 [Link to Dashboard](https://lookerstudio.google.com/s/hCM172ps3Mw)
