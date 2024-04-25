@@ -17,7 +17,7 @@ The diagram below illustrates the complete workflow, beginning with the ingestio
 
 - **Cloud Platform:** Google Cloud Platform (GCP)
 - **Infrastructure as Code (IaC):** Terraform
-- **Workflow Orchestration:**** Mage
+- **Workflow Orchestration:** Mage
 - **Data Warehouse:** BigQuery
 - **Batch Processing:** Dataproc (Spark)
 - **Metadata Storage:** Cloud Filestore
