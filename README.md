@@ -4,11 +4,11 @@ Earthquakes are an everlasting occurrence that have the capacity for colossal da
 
 ## Table of Contents
 
-- [Workflow Overview](#Workflow Overview)
+- [[Workflow Overview]]
 - [Dataset](#Dataset)
-- [Project Re-Creation](#Project Re-Creation)
+- [[Project Re-Creation]]
 - [Dashboard](#Dashboard)
-- [Next Steps & Final Thoughts](#Next Steps & Final Thoughts)
+- [[Next Steps & Final Thoughts]]
 - [References](#References)
 ## Workflow Overview
 
@@ -85,7 +85,7 @@ This dashboard presents statistics pertaining to the magnitude, depth, significa
 ![](images/20240424021600.png?raw=true)
 ![](images/20240424021629.png?raw=true)
 
-To interact with the dashboard, click on the link below:
+To interact with the dashboard, click on the link:
 [Link to Dashboard](https://lookerstudio.google.com/s/hCM172ps3Mw)
 ## Next Steps & Final Thoughts
 
