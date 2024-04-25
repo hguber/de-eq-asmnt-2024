@@ -23,7 +23,7 @@ The diagram below illustrates the complete workflow, beginning with the ingestio
 - **Metadata Storage:** Cloud Filestore
 - **Compute services:** Cloud Run 
 
-![ScreenShot](images/20240424142712.png)
+![](images/20240424142712.png)
 ## Dataset
 
 The dataset was taken from ANSS ComCat server using functions taken from USGS libcomcat. 
