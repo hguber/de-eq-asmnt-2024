@@ -8,7 +8,7 @@ Earthquakes are an everlasting occurrence that have the capacity for colossal da
 - [Dataset](#Dataset)
 - [Project Re-Creation](#Project-Re-Creation)
 - [Dashboard](#Dashboard)
-- [Next Steps & Final Thoughts](#Next-Steps-&-Final-Thoughts)
+- [Next Steps and Final Thoughts](#Next-Steps-and-Final-Thoughts)
 - [References](#References)
 ## Workflow Overview
 
@@ -87,7 +87,7 @@ This dashboard presents statistics pertaining to the magnitude, depth, significa
 
 To interact with the dashboard, click on the link:
 [Link to Dashboard](https://lookerstudio.google.com/s/hCM172ps3Mw)
-## Next Steps & Final Thoughts
+## Next Steps and Final Thoughts
 
 - CI/CD will be implemented using Cloud Build to ensure that changes to the pipeline will be systematically implemented when pushed to github.
 - USGS also provides data regarding different types of magnitude as well as additional characteristics of earthquakes which may add to patterns worth exploring.
