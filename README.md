@@ -4,11 +4,11 @@ Earthquakes are an everlasting occurrence that have the capacity for colossal da
 
 ## Table of Contents
 
-- [Workflow Overview](#Workflow%20Overview)
+- [Workflow Overview](<Workflow Overview>)
 - [Dataset](#Dataset)
-- [Project Re-Creation](#Project%20Re-Creation)
+- [Project Re-Creation](<Project Re-Creation>)
 - [Dashboard](#Dashboard)
-- [Next Steps & Final Thoughts](#Next%20Steps%20&%20Final%20Thoughts)
+- [Next Steps & Final Thoughts](<Next Steps & Final Thoughts>)
 - [References](#References)
 ## Workflow Overview
 
