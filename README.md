@@ -6,7 +6,7 @@ Earthquakes are an everlasting occurrence that have the capacity for colossal da
 
 - [Workflow Overview](#Workflow-Overview)
 - [Dataset](#Dataset)
-- [Project ReCreation](#Project-ReCreation)
+- [Project Re-Creation](#Project-Re-Creation)
 - [Dashboard](#Dashboard)
 - [Next Steps & Final Thoughts](#Next-Steps-&-Final-Thoughts)
 - [References](#References)
