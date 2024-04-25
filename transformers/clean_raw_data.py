@@ -40,13 +40,13 @@ def transform(data, *args, **kwargs):
     df = df.drop(['url','eventtype'], axis=1)
 
     conditions = [
-    (df['magnitude'] >= 1) & (df['magnitude'] <= 2.9),
-    (df['magnitude'] >= 3) & (df['magnitude'] <= 3.9),
-    (df['magnitude'] >= 4) & (df['magnitude'] <= 4.9),
-    (df['magnitude'] >= 5) & (df['magnitude'] <= 5.9),
-    (df['magnitude'] >= 6) & (df['magnitude'] <= 6.9),
-    (df['magnitude'] >= 7) & (df['magnitude'] <= 7.9),
-    (df['magnitude'] >= 8)]
+        (df['magnitude'] >= 1) & (df['magnitude'] < 3),
+        (df['magnitude'] >= 3) & (df['magnitude'] < 4),
+        (df['magnitude'] >= 4) & (df['magnitude'] < 5),
+        (df['magnitude'] >= 5) & (df['magnitude'] < 6),
+        (df['magnitude'] >= 6) & (df['magnitude'] < 7),
+        (df['magnitude'] >= 7) & (df['magnitude'] < 8),
+        (df['magnitude'] >= 8)]
 
     values = ['micro', 'minor', 'light', 'moderate', 'strong', 'major', 'great']
 

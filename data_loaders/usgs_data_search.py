@@ -34,8 +34,7 @@ def load_data_from_api(*args, **kwargs):
     mag_end = kwargs["MAG_END"]
     headers = kwargs["HEADER"]
 
-    #dt_end = kwargs.get("execution_date").date()
-    dt_end = dt.datetime(2024, 4, 1)
+    dt_end = kwargs.get("execution_date").date()
     last_month = dt_end - dt.timedelta(days=1)
     dt_start = dt.datetime.combine(last_month.replace(day=1), dt.datetime.min.time())
     print(type(dt_start), type(dt_end))

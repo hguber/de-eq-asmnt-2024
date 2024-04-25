@@ -41,9 +41,8 @@ tags: []
 type: python
 uuid: gcs_to_bigquery_spark
 variables:
-  cluster_name: eqcluster
-  job_file_path: /home/src/default_repo/scratchpads/spark_scripy.py
-  project_id: de-eq-asmnt-2024
-  region: us-west1
+  cluster_name: #name of cluster
+  project_id: #gcp project id
+  region: #region 
 variables_dir: /home/src/mage_data/default_repo
 widgets: []

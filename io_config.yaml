@@ -37,18 +37,7 @@ default:
   DUCKDB_DATABASE: database
   DUCKDB_SCHEMA: main
   # Google
-  GOOGLE_SERVICE_ACC_KEY:
-    type: "service_account"
-    project_id: "de-eq-asmnt-2024"
-    private_key_id: "{{ mage_secret_var('private_key_id') }}"
-    private_key: "{{ mage_secret_var('private_key') }}"
-    client_email: "{{ mage_secret_var('client_email') }}"
-    client_id: "{{ mage_secret_var('client_id') }}"
-    auth_uri: "https://accounts.google.com/o/oauth2/auth"
-    token_uri: "https://oauth2.googleapis.com/token"
-    auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs"
-    client_x509_cert_url: "{{ mage_secret_var('client_x509_cert_url') }}"
-    universe_domain: "googleapis.com"
+  GOOGLE_SERVICE_ACC_KEY: #include json credential key here
   GOOGLE_SERVICE_ACC_KEY_FILEPATH: "/path/to/your/service/account/key.json"
   GOOGLE_LOCATION: US # Optional
   # MongoDB

@@ -6,6 +6,7 @@ from pyspark.sql.functions import date_format
 from google.cloud import bigquery
 import datetime
 from google.cloud import bigquery
+import numpy as np
 
 def table_exp(table_id):
     client = bigquery.Client()
@@ -40,6 +41,8 @@ if __name__ == "__main__":
     df = spark.read.csv(gs_bucket_raw + '/raw/*/*', header='true')
     df = df.withColumn("year", date_format(df.date, "yyyy")).withColumn("month", date_format(df.date, "MM"))
     df = df.drop('_c0')
+
+    # display updated DataFrame
     df.registerTempTable('eq_events')
 
     df_final = spark.sql("""
